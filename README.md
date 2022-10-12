@@ -1,6 +1,11 @@
 # Simple Mesh Rendering Application
 This is a simple mesh rendering application to display full meshes or wireframes.
 
+<p align="center">
+  <img src="https://github.com/tylerfeldman321/simple-mesh-viewer/blob/main/images/example-object.png" alt="Example Render" width="300"/>
+  <img src="https://github.com/tylerfeldman321/simple-mesh-viewer/blob/main/images/example-object-wireframe.png" alt="Example Wireframe Render" width="300"/>
+</p>
+
 ## Usage
 ### Installing Dependencies
 A requirements.txt file is included. These dependencies can be installed using: `pip install -r requirements.txt` after
