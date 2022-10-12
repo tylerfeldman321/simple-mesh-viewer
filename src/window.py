@@ -16,6 +16,7 @@ class Window:
         """ Initialize the window.
 
         Args:
+            limit (float): Value to set for the limits of each axis.
             figsize (Tuple): Tuple containing the desired size of the figure in inches.
             color (matplotlib.color): Default color to use when plotting.
 

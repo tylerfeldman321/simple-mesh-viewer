@@ -19,7 +19,7 @@ class MeshRendererApp:
 
     """
 
-    def __init__(self, filepath, degrees_per_full_screen_mouse_move=200):
+    def __init__(self, filepath, wireframe=False, degrees_per_full_screen_mouse_move=200):
         """ Initializes the rendering application.
 
         Args:
@@ -32,6 +32,8 @@ class MeshRendererApp:
         self.mesh = read_mesh_from_file(filepath)
         self.mesh.center_at_origin()
         window_limit = self.mesh.get_furthest_vertex_distance()
+
+        self.wireframe = wireframe
 
         self.window = Window(window_limit)
 
@@ -50,7 +52,7 @@ class MeshRendererApp:
 
         """
         self.window.clear()
-        self.window.plot_mesh(self.mesh)
+        self.window.plot_mesh(self.mesh, draw_faces=(not self.wireframe))
 
     def run(self):
         """ Runs an animation to render the Mesh and update the display, and displays the window to the user.
@@ -165,10 +167,11 @@ def main(args):
         args(List[str]): List of strings to parse.
 
     """
+    wireframe = args.wireframe
     mesh_filepath = args.mesh_filepath
     assert os.path.exists(mesh_filepath), f'Provided mesh filepath is invalid: {mesh_filepath}'
 
-    renderer = MeshRendererApp(mesh_filepath)
+    renderer = MeshRendererApp(mesh_filepath, wireframe)
     renderer.run()
 
 
@@ -178,5 +181,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--mesh-filepath', type=str, default=DEFAULT_MESH_OBJECT_FILEPATH,
                         help='Path to csv file containing information about the mesh object')
+    parser.add_argument('--wireframe', action='store_true',
+                        help='True if only the wireframe should be displayed')
     args = parser.parse_args()
     main(args)
